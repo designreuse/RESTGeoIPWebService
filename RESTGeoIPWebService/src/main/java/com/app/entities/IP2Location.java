@@ -5,25 +5,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "ip2location_db5")
+@Table(name = "ip2location_db5",
+indexes = {
+	@Index(columnList = "ip_from", name = "idx_ip_from"),
+	@Index(columnList = "ip_to", name = "idx_ip_to"),
+	@Index(columnList = "ip_from,ip_to", name = "idx_ip_from_to" )
+})
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "ipFrom", "ipTo" })
 public class IP2Location {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ip_from")
+	@Column(name = "ip_from", columnDefinition = "INT(10) UNSIGNED")
 	private Long ipFrom;
 
-	@Column(name = "ip_to")
+	@Column(name = "ip_to", columnDefinition = "INT(10) UNSIGNED")
 	private Long ipTo;
 
-	@Column(name = "country_code", columnDefinition = "char DEFAULT NULL")
+	@Column(name = "country_code", columnDefinition = "CHAR(2) DEFAULT NULL")
 	private String countryCode;
 
 	@Column(name = "country_name", length = 64)
