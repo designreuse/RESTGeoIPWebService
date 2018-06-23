@@ -11,11 +11,11 @@ It can be downloaded here: https://drive.google.com/file/d/1IXj2aYLic0hpcUR8UfLn
 or here: https://lite.ip2location.com/ – DB5.LITE.
 
 Also before running application it's needed to modify:
- - project script (data.sql) and replace the row 'LOAD DATA LOCAL INFILE' with your downloaded csv's path;
- - in application.properties replace 'username' and 'password' with correct values.
-
+ - project script data.sql (located in src/main/resources/) and replace in the row 'LOAD DATA LOCAL INFILE' with your downloaded csv's path;
+ - in application.properties (located in src/main/resources) replace 'username' and 'password' with your correct values.
 
 Usage: open in browser 'http://localhost:9090/geoip/{your_typed_ip} and type ip-address instead 'your_typed_ip'.
+
 Example: http://localhost:9090/geoip/8.8.8.8
 
 You'll get response like that:
@@ -31,4 +31,4 @@ You'll get response like that:
 	  "regionName": "California"
 	}
 
-
+That's all.
